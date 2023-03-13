@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>TSH Reset PI</title>
+        <script src="../js/sdtools.common.js"></script>
+        <link rel="stylesheet" href="sdpi.css">
+    </head>
+
+    <body>
+        <div class="sdpi-wrapper">
+            <div class="sdpi-item" id="reset-types">
+                <div class="sdpi-item-label">Reset Type</div>
+                <select class="sdpi-item-value select setvalueSelect sdProperty" id="reset-choice" oninput="setSettings()" value="reset-scores">
+                    <option value="reset-scores" selected>Reset Scores</option>
+                    <option value="reset-match">Reset Matches</option>
+                    <option value="clear-all">Reset All</option>
+                </select>
+            </div>
+        </div>
+    </body>
+</html>

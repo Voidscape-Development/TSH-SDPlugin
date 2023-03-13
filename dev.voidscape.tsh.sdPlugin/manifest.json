@@ -1,0 +1,202 @@
+{
+  "Actions": [
+    {
+      "Icon": "images/plus-icon",
+      "Name": "Team One - Score Up",
+      "States": [
+        {
+          "Image": "images/plus",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Increases Team One Score By 1",
+      "UUID": "dev.voidscape.tsh.teamonescoreup"
+    },
+    {
+      "Icon": "images/plus-icon",
+      "Name": "Team Two - Score Up",
+      "States": [
+        {
+          "Image": "images/plus",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Increases Team Two Score By 1",
+      "UUID": "dev.voidscape.tsh.teamtwoscoreup"
+    },
+    {
+      "Icon": "images/minus-icon",
+      "Name": "Team One - Score Down",
+      "States": [
+        {
+          "Image": "images/minus-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Decreases Team One Score By 1",
+      "UUID": "dev.voidscape.tsh.teamonescoredown"
+    },
+    {
+      "Icon": "images/minus-icon",
+      "Name": "Team Two - Score Down",
+      "States": [
+        {
+          "Image": "images/minus-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Decreases Team Two Score By 1",
+      "UUID": "dev.voidscape.tsh.teamtwoscoredown"
+    },
+    {
+      "Icon": "images/swap",
+      "Name": "Switch Teams",
+      "States": [
+        {
+          "Image": "images/swap",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Controls Swapping Teams",
+      "UUID": "dev.voidscape.tsh.swap"
+    },
+    {
+      "Icon": "images/reset-icon",
+      "Name": "Reset Action",
+      "States": [
+        {
+          "Image": "images/reset",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "PropertyInspector/reset_pi.html",
+      "Tooltip": "Choose How To Reset TSH",
+      "UUID": "dev.voidscape.tsh.reset"
+    },
+    {
+      "Icon": "images/set-selector",
+      "Name": "Open Set Selector",
+      "States": [
+        {
+          "Image": "images/set-selector",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Opens the Set Selector",
+      "UUID": "dev.voidscape.tsh.setselector"
+    },
+    {
+      "Icon": "images/input-icon",
+      "Name": "Set Best Of",
+      "States": [
+        {
+          "Image": "images/input-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "PropertyInspector/bestof_pi.html",
+      "Tooltip": "Set The Best Of Amount",
+      "UUID": "dev.voidscape.tsh.bestof"
+    },
+    {
+      "Icon": "images/input-icon",
+      "Name": "Set Match Title",
+      "States": [
+        {
+          "Image": "images/input-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "PropertyInspector/match_pi.html",
+      "Tooltip": "Set The Match Title",
+      "UUID": "dev.voidscape.tsh.match"
+    },
+    {
+      "Icon": "images/input-icon",
+      "Name": "Set Phase Title",
+      "States": [
+        {
+          "Image": "images/input-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "PropertyInspector/phase_pi.html",
+      "Tooltip": "Set The Phase Title",
+      "UUID": "dev.voidscape.tsh.phase"
+    },
+    {
+      "Icon": "images/input-icon",
+      "Name": "Set Player Amount",
+      "States": [
+        {
+          "Image": "images/input-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "PropertyInspector/player_pi.html",
+      "Tooltip": "Set The Player Amount",
+      "UUID": "dev.voidscape.tsh.player"
+    },
+    {
+      "Icon": "images/input-icon",
+      "Name": "Set Character Amount",
+      "States": [
+        {
+          "Image": "images/input-icon",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "PropertyInspectorPath": "PropertyInspector/character_pi.html",
+      "Tooltip": "Set the Character Amount",
+      "UUID": "dev.voidscape.tsh.character"
+    }
+  ],
+  "SDKVersion": 2,
+  "Author": "Voidscape",
+  "Description": "TournamentStreamHelper Integration for Stream Deck",
+  "Name": "TournamentStreamHelper",
+  "Icon": "images/pluginIcon",
+  "PropertyInspectorPath": "PropertyInspector/base_pi.html",
+  "URL": "https://github.com/Voidscape-Development/TSH-SDPlugin",
+  "CodePath": "index.html",
+  "Category": "TournamentStreamHelper",
+  "CategoryIcon": "images/categoryIcon",
+  "Version": "1.0",
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "6.0"
+  }
+}
