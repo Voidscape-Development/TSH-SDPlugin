@@ -13,6 +13,7 @@ jobs:
         os: ["windows-latest"]
     
     steps:
+      - uses: actions/checkout@v3
       - name: Stream Deck Distribution Tool
         uses: AdamCarballo/streamdeck-distribution-tool@v1.0.1
         with:
