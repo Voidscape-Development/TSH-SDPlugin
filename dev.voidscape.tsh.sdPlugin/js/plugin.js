@@ -66,6 +66,12 @@ function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, in
                 case "dev.voidscape.tsh.match":
                     MatchAction.onKeyUp(context);
                     break;
+                case "dev.voidscape.tsh.character":
+                    CharacterAmountAction.onKeyUp(context);
+                    break;
+                case "dev.voidscape.tsh.player":
+                    PlayerAmountAction.onKeyUp(context);
+                    break;
                 case "dev.voidscape.tsh.phase":
                     PhaseAction.onKeyUp(context);
                     break;
@@ -94,6 +100,9 @@ function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, in
                 case "dev.voidscape.tsh.player":
                     PlayerAmountAction.SetSettings(context, jsonPayload['settings']);
                     break;
+                case "dev.voidscape.tsh.character":
+                    CharacterAmountAction.SetSettings(context, jsonPayload['settings']);
+                    break;
             }
         }
         else if (event == "willDisappear") {
@@ -107,6 +116,12 @@ function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, in
                 switch(action){
                     case "dev.voidscape.tsh.bestof":
                         BestOfAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.player":
+                        PlayerAmountAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.character":
+                        CharacterAmountAction.SetSettings(context, jsonPayload['settings']);
                         break;
                     case "dev.voidscape.tsh.phase":
                         PhaseAction.SetSettings(context, jsonPayload['settings']);
@@ -243,7 +258,7 @@ var SetSelectorAction = {
     },
     onKeyUp: function (context) {
         settings = settingsCache[context];
-        fetch("http://127.0.0.1:5000/sets", {
+        fetch("http://127.0.0.1:5000/open-set", {
                 method: "GET"
         });
     },
