@@ -16,6 +16,12 @@ function SetTitle(context, titleText) {
     websocket.send(JSON.stringify(json));
 }
 
+function grabSettings(context, setting_name, default_value) {
+    settings = settingsCache[context];
+
+    return (settings[setting_name] == null || settings[setting_name] == "") ? default_value : settings[setting_name]
+}
+
 function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, inInfo) {
     pluginUUID = inPluginUUID
 
@@ -41,81 +47,81 @@ function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, in
         var context = jsonObj['context'];
         var jsonPayload = jsonObj['payload'] || {};
 
-        if (event == "keyDown") {
-        }
-        else if (event == "keyUp") {
-            switch(action){
-                case "dev.voidscape.tsh.teamonescoreup":
-                    ScoreUpAction.onKeyUp(context, 1);
-                    break;
-                case "dev.voidscape.tsh.teamonescoredown":
-                    ScoreDownAction.onKeyUp(context, 1);
-                    break;
-                case "dev.voidscape.tsh.teamtwoscoreup":
-                    ScoreUpAction.onKeyUp(context, 2);
-                    break;
-                case "dev.voidscape.tsh.teamtwoscoredown":
-                    ScoreDownAction.onKeyUp(context, 2);
-                    break;
-                case "dev.voidscape.tsh.swap":
-                    SwapAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.bestof":
-                    BestOfAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.match":
-                    MatchAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.character":
-                    CharacterAmountAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.player":
-                    PlayerAmountAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.phase":
-                    PhaseAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.reset":
-                    ResetAction.onKeyUp(context);
-                    break;
-                case "dev.voidscape.tsh.setselector":
-                    SetSelectorAction.onKeyUp(context);
-                    break;
-            }
-        }
-        else if (event == "willAppear") {
-            switch(action){
-                case "dev.voidscape.tsh.bestof":
-                    BestOfAction.SetSettings(context, jsonPayload['settings']);
-                    break;
-                case "dev.voidscape.tsh.match":
-                    MatchAction.SetSettings(context, jsonPayload['settings']);
-                    break;
-                case "dev.voidscape.tsh.phase":
-                    PhaseAction.SetSettings(context, jsonPayload['settings']);
-                    break;
-                case "dev.voidscape.tsh.reset":
-                    ResetAction.SetSettings(context, jsonPayload['settings']);
-                    break;
-                case "dev.voidscape.tsh.player":
-                    PlayerAmountAction.SetSettings(context, jsonPayload['settings']);
-                    break;
-                case "dev.voidscape.tsh.character":
-                    CharacterAmountAction.SetSettings(context, jsonPayload['settings']);
-                    break;
-            }
-        }
-        else if (event == "willDisappear") {
-        }
-        else if (event == "sendToPlugin") {
-            console.log("[TSH] sendToPlugin Received: ", jsonPayload);
-        }
-        else if (event == "didReceiveSettings") {
-            console.log("[TSH] Received Settings Payload: ", jsonPayload);
-            if (jsonPayload != null && jsonPayload['settings'] != null) {
-                switch(action){
+        switch(event) {
+            case "keyDown":
+                break;
+            case "keyUp":
+                switch(action) {
+                    case "dev.voidscape.tsh.teamonescoreup":
+                        ScoreUpAction.onKeyUp(context, 1);
+                        break;
+                    case "dev.voidscape.tsh.teamtwoscoreup":
+                        ScoreUpAction.onKeyUp(context, 2);
+                        break;
+                    case "dev.voidscape.tsh.teamonescoredown":
+                        ScoreDownAction.onKeyUp(context, 1);
+                        break;
+                    case "dev.voidscape.tsh.teamtwoscoredown":
+                        ScoreDownAction.onKeyUp(context, 2);
+                        break;
+                    case "dev.voidscape.tsh.swap":
+                        SwapAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.reset":
+                        ResetAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.setselector":
+                        SetSelectorAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.bestof":
+                        BestOfAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.match":
+                        MatchAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.phase":
+                        PhaseAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.player":
+                        PlayerAmountAction.onKeyUp(context);
+                        break;
+                    case "dev.voidscape.tsh.character":
+                        CharacterAmountAction.onKeyUp(context);
+                        break;
+                }
+                break;
+            case "willAppear":
+            case "didReceiveSettings":
+                switch(action) {
+                    case "dev.voidscape.tsh.teamonescoreup":
+                        ScoreUpAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.teamtwoscoreup":
+                        ScoreUpAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.teamonescoredown":
+                        ScoreDownAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.teamtwoscoredown":
+                        ScoreDownAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.swap":
+                        SwapAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.reset":
+                        ResetAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.setselector":
+                        SetSelectorAction.SetSettings(context, jsonPayload['settings']);
+                        break;
                     case "dev.voidscape.tsh.bestof":
                         BestOfAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.match":
+                        MatchAction.SetSettings(context, jsonPayload['settings']);
+                        break;
+                    case "dev.voidscape.tsh.phase":
+                        PhaseAction.SetSettings(context, jsonPayload['settings']);
                         break;
                     case "dev.voidscape.tsh.player":
                         PlayerAmountAction.SetSettings(context, jsonPayload['settings']);
@@ -123,17 +129,13 @@ function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, in
                     case "dev.voidscape.tsh.character":
                         CharacterAmountAction.SetSettings(context, jsonPayload['settings']);
                         break;
-                    case "dev.voidscape.tsh.phase":
-                        PhaseAction.SetSettings(context, jsonPayload['settings']);
-                        break;
-                    case "dev.voidscape.tsh.match":
-                        MatchAction.SetSettings(context, jsonPayload['settings']);
-                        break;
-                    case "dev.voidscape.tsh.reset":
-                        ResetAction.SetSettings(context, jsonPayload['settings']);
-                        break;
                 }
-            }
+                break;
+            case "willDisappear":
+                break;
+            case "sendToPlugin":
+                console.log("[TSH] sendToPlugin Received: ", jsonPayload);
+                break;
         }
     };
 
@@ -147,9 +149,20 @@ var ScoreUpAction = {
         console.log("keydown");
     },
     onKeyUp: function (context, teamNumber) {
-        fetch("http://127.0.0.1:5000/team" + teamNumber + "-scoreup", {
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/team" + teamNumber + "-scoreup", {
                 method: "GET"
         });
+    },
+    SetSettings: function (context, settings) {
+        var json = {
+            "event": "setSettings",
+            "context": context,
+            "payload": settings
+        };
+        websocket.send(JSON.stringify(json));
+        console.log(JSON.stringify(json));
+        settingsCache[context] = settings;
     },
     LogMessage: function (message) {
         var json = {
@@ -169,9 +182,20 @@ var ScoreDownAction = {
         console.log("keydown");
     },
     onKeyUp: function (context, teamNumber) {
-        fetch("http://127.0.0.1:5000/team" + teamNumber + "-scoredown", {
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/team" + teamNumber + "-scoredown", {
                 method: "GET"
         });
+    },
+    SetSettings: function (context, settings) {
+        var json = {
+            "event": "setSettings",
+            "context": context,
+            "payload": settings
+        };
+        websocket.send(JSON.stringify(json));
+        console.log(JSON.stringify(json));
+        settingsCache[context] = settings;
     },
     LogMessage: function (message) {
         var json = {
@@ -192,8 +216,9 @@ var ResetAction = {
     },
     onKeyUp: function (context) {
         settings = settingsCache[context];
-        choice = settings['reset-choice'] == null ? "reset-scores" : settings['reset-choice'];
-        fetch("http://127.0.0.1:5000/" + choice, {
+        choice = grabSettings(context, "reset-choice", "reset-scores");
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/" + choice, {
                 method: "GET"
         });
     },
@@ -225,8 +250,8 @@ var SwapAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
-        fetch("http://127.0.0.1:5000/swap-teams", {
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/swap-teams", {
                 method: "GET"
         });
     },
@@ -237,7 +262,7 @@ var SwapAction = {
             "payload": settings
         };
         websocket.send(JSON.stringify(json));
-        settingsCache[context] = settings['settings'];
+        settingsCache[context] = settings;
     },
     LogMessage: function (message) {
         var json = {
@@ -257,8 +282,8 @@ var SetSelectorAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
-        fetch("http://127.0.0.1:5000/open-set", {
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/open-set", {
                 method: "GET"
         });
     },
@@ -269,7 +294,7 @@ var SetSelectorAction = {
             "payload": settings
         };
         websocket.send(JSON.stringify(json));
-        settingsCache[context] = settings['settings'];
+        settingsCache[context] = settings;
     },
     LogMessage: function (message) {
         var json = {
@@ -289,9 +314,9 @@ var BestOfAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
-        choice = settings['bestOf'] == null ? "1" : settings['bestOf'];
-        fetch("http://127.0.0.1:5000/set?best-of=" + choice, {
+        choice = grabSettings(context, "bestOf", "1");
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/set?best-of=" + choice, {
                 method: "GET"
         });
     },
@@ -322,8 +347,9 @@ var PhaseAction = {
     },
     onKeyUp: function (context) {
         settings = settingsCache[context];
-        choice = settings['phase-title'] == null ? "" : settings['phase-title'];
-        fetch("http://127.0.0.1:5000/set?phase=" + choice, {
+        choice = grabSettings(context, "phase-title", "");
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/set?phase=" + choice, {
                 method: "GET"
         });
     },
@@ -354,8 +380,9 @@ var MatchAction = {
     },
     onKeyUp: function (context) {
         settings = settingsCache[context];
-        choice = settings['match-title'] == null ? "" : settings['match-title'];
-        fetch("http://127.0.0.1:5000/set?match=" + settings['match-title'], {
+        choice = grabSettings(context, "match-title", "");
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/set?match=" + choice, {
                 method: "GET"
         });
     },
@@ -386,8 +413,9 @@ var PlayerAmountAction = {
     },
     onKeyUp: function (context) {
         settings = settingsCache[context];
-        choice = settings['player-amount'] == null ? "1" : settings['player-amount'];
-        fetch("http://127.0.0.1:5000/set?players=" + choice, {
+        choice = grabSettings(context, "player-amount", "1");
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/set?players=" + choice, {
                 method: "GET"
         });
     },
@@ -417,9 +445,9 @@ var CharacterAmountAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
-        choice = settings['character-amount'] == null ? "1" : settings['character-amount'];
-        fetch("http://127.0.0.1:5000/set?characters=" + choice, {
+        choice = grabSettings(context, "character-amount", "1");
+        ip_address = grabSettings(context, "ip-address", "127.0.0.1");
+        fetch("http://" + ip_address + ":5000/set?characters=" + choice, {
                 method: "GET"
         });
     },

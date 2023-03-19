@@ -176,7 +176,7 @@
     }
   ],
   "SDKVersion": 2,
-  "Author": "Voidscape",
+  "Author": "Voidscape Development",
   "Description": "TournamentStreamHelper Integration for Stream Deck",
   "Name": "TournamentStreamHelper",
   "Icon": "images/pluginIcon",
