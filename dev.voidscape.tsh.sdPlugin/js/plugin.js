@@ -23,7 +23,7 @@ function grabSettings(context, setting_name, default_value) {
 }
 
 function connectElgatoStreamDeckSocket(inPort, inPluginUUID, inRegisterEvent, inInfo) {
-    pluginUUID = inPluginUUID
+    pluginUUID = inPluginUUID;
 
     websocket = new WebSocket("ws://127.0.0.1:" + inPort);
 
@@ -150,7 +150,8 @@ var ScoreUpAction = {
     },
     onKeyUp: function (context, teamNumber) {
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/team" + teamNumber + "-scoreup", {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber +"-team" + teamNumber + "-scoreup", {
                 method: "GET"
         });
     },
@@ -183,7 +184,8 @@ var ScoreDownAction = {
     },
     onKeyUp: function (context, teamNumber) {
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/team" + teamNumber + "-scoredown", {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-team" + teamNumber + "-scoredown", {
                 method: "GET"
         });
     },
@@ -215,10 +217,10 @@ var ResetAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
         choice = grabSettings(context, "reset-choice", "reset-scores");
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/" + choice, {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-" + choice, {
                 method: "GET"
         });
     },
@@ -251,7 +253,8 @@ var SwapAction = {
     },
     onKeyUp: function (context) {
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/swap-teams", {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-swap-teams", {
                 method: "GET"
         });
     },
@@ -283,7 +286,8 @@ var SetSelectorAction = {
     },
     onKeyUp: function (context) {
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/open-set", {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-open-set", {
                 method: "GET"
         });
     },
@@ -316,7 +320,8 @@ var BestOfAction = {
     onKeyUp: function (context) {
         choice = grabSettings(context, "bestOf", "1");
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/set?best-of=" + choice, {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-set?best-of=" + choice, {
                 method: "GET"
         });
     },
@@ -346,10 +351,10 @@ var PhaseAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
         choice = grabSettings(context, "phase-title", "");
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/set?phase=" + choice, {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber +  "-set?phase=" + choice, {
                 method: "GET"
         });
     },
@@ -379,10 +384,10 @@ var MatchAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
         choice = grabSettings(context, "match-title", "");
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/set?match=" + choice, {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-set?match=" + choice, {
                 method: "GET"
         });
     },
@@ -412,10 +417,10 @@ var PlayerAmountAction = {
         console.log("keydown");
     },
     onKeyUp: function (context) {
-        settings = settingsCache[context];
         choice = grabSettings(context, "player-amount", "1");
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/set?players=" + choice, {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-set?players=" + choice, {
                 method: "GET"
         });
     },
@@ -447,7 +452,8 @@ var CharacterAmountAction = {
     onKeyUp: function (context) {
         choice = grabSettings(context, "character-amount", "1");
         ip_address = grabSettings(context, "ip-address", "127.0.0.1");
-        fetch("http://" + ip_address + ":5000/set?characters=" + choice, {
+        scoreboardNumber = grabSettings(context, "scoreboardNumber", "1");
+        fetch("http://" + ip_address + ":5000/scoreboard" + scoreboardNumber + "-set?characters=" + choice, {
                 method: "GET"
         });
     },

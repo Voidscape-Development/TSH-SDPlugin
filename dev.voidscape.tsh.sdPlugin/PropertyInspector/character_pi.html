@@ -13,6 +13,21 @@
                 <div class="sdpi-item-label">TSH IP Address</div>
                 <input class="sdpi-item-value sdProperty" type="text" id="ip-address" placeholder="127.0.0.1" value="" oninput="setSettings()">
             </div>
+            <div class="sdpi-item" id="scoreboard-item">
+                <div class="sdpi-item-label">Scoreboard Number</div>
+                <select class="sdpi-item-value select setvalueSelect sdProperty" id="scoreboardNumber" onchange="setSettings()" value="1">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
             <div class="sdpi-item" id="character-amount-types">
                 <div class="sdpi-item-label">Character Amount</div>
                 <select class="sdpi-item-value select setvalueSelect sdProperty" id="character-amount" onchange="setSettings()" value="1">
